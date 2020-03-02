@@ -4,25 +4,6 @@ import (
 	"testing"
 )
 
-func TestGetRealActivationDate(t *testing.T) {
-	phoneData := make(map[string]Phone)
-	activationSession := ActivationSession{ActivationDate: "2016-03-01", DeActivationDate: "2016-05-01"}
-	phoneObject := Phone{PhoneNumber: "0978181187", ActivationSession: activationSession}
-	phoneData[phoneObject.PhoneNumber] = phoneObject
-
-	testingPhone := "00000000"
-	realActivationNotExist := getRealActivationDate(phoneData, testingPhone)
-	if realActivationNotExist != "" {
-		t.Errorf("The Phone did not exist expect emtpty string, but result is %s ", realActivationNotExist)
-	}
-
-	realActivationExist := getRealActivationDate(phoneData, "0978181187")
-	expectRealActivationDate := "2016-03-01"
-	if realActivationExist != expectRealActivationDate {
-		t.Errorf("The Phone did expect exist expect %s, but result is %s ", expectRealActivationDate, realActivationExist)
-	}
-}
-
 func TestMergeActivationSessionToPhone(t *testing.T) {
 	activationSession := ActivationSession{ActivationDate: "2016-03-01", DeActivationDate: "2016-05-01"}
 	phone := Phone{PhoneNumber: "0978181187", ActivationSession: activationSession}
